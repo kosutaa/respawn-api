@@ -1,0 +1,17 @@
+# Blueprint do Render: cria o Web Service da API a partir do Dockerfile.
+# Usuario e senha do Oracle sao pedidos no painel do Render (sync: false)
+# e nunca ficam salvos no repositorio.
+services:
+  - type: web
+    name: respawn-api
+    runtime: docker
+    plan: free
+    dockerfilePath: ./Dockerfile
+    healthCheckPath: /
+    envVars:
+      - key: DB_URL
+        value: jdbc:oracle:thin:@oracle.fiap.com.br:1521:ORCL
+      - key: DB_USERNAME
+        sync: false
+      - key: DB_PASSWORD
+        sync: false
