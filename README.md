@@ -14,8 +14,9 @@ Disciplina: **Domain Driven Design - Java**.
 
 | | |
 |---|---|
-| **Deploy (Render)** | _preencher após o deploy_ |
-| **Documentação interativa (Swagger)** | `<link do deploy>/swagger-ui.html` |
+| **Deploy (Render)** | https://respawn-api-gk7x.onrender.com |
+| **Documentação interativa (Swagger)** | https://respawn-api-gk7x.onrender.com/swagger-ui.html |
+| **Repositório** | https://github.com/kosutaa/respawn-api-gs2026 |
 
 > O plano gratuito do Render "dorme" após um período sem uso: a primeira requisição pode levar até 1 minuto.
 
