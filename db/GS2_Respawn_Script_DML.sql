@@ -11,11 +11,11 @@ INSERT INTO t_sc_escola VALUES (4, 'E.E. Machado de Assis', 'Penha', 'Zona Leste
 INSERT INTO t_sc_escola VALUES (5, 'E.E. Carolina Maria de Jesus', 'Cidade Tiradentes', 'Zona Leste', '35001126');
 
 -- 2. Inserindo 5 Professores
-INSERT INTO t_sc_professor VALUES (1, 1, 'Helena Souza', 'helena.souza@educacao.sp.gov.br', 'MATEMATICA');
-INSERT INTO t_sc_professor VALUES (2, 1, 'Marcos Oliveira', 'marcos.oliveira@educacao.sp.gov.br', 'PORTUGUES');
-INSERT INTO t_sc_professor VALUES (3, 2, 'Claudia Ferreira', 'claudia.ferreira@educacao.sp.gov.br', 'MATEMATICA');
-INSERT INTO t_sc_professor VALUES (4, 3, 'Roberto Santos', 'roberto.santos@educacao.sp.gov.br', 'PORTUGUES');
-INSERT INTO t_sc_professor VALUES (5, 4, 'Patricia Lima', 'patricia.lima@educacao.sp.gov.br', 'MATEMATICA');
+INSERT INTO t_sc_professor VALUES (1, 1, 'Helena Souza', 'helena.souza@escola.example', 'MATEMATICA');
+INSERT INTO t_sc_professor VALUES (2, 1, 'Marcos Oliveira', 'marcos.oliveira@escola.example', 'PORTUGUES');
+INSERT INTO t_sc_professor VALUES (3, 2, 'Claudia Ferreira', 'claudia.ferreira@escola.example', 'MATEMATICA');
+INSERT INTO t_sc_professor VALUES (4, 3, 'Roberto Santos', 'roberto.santos@escola.example', 'PORTUGUES');
+INSERT INTO t_sc_professor VALUES (5, 4, 'Patricia Lima', 'patricia.lima@escola.example', 'MATEMATICA');
 
 -- 3. Inserindo 5 Turmas
 INSERT INTO t_sc_turma VALUES (1, 1, 1, '1A-EM', '1o Ano Ensino Medio', 'MANHA', 2026);
