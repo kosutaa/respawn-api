@@ -56,19 +56,16 @@ public class TurmaController {
         return ResponseEntity.noContent().build();
     }
 
-    /** Alunos da turma, do maior para o menor XP. */
     @GetMapping("/{id}/alunos")
     public List<Aluno> alunos(@PathVariable Long id) {
         return turmaBO.alunos(id);
     }
 
-    /** Painel do professor: topicos em que a turma mais erra. */
     @GetMapping("/{id}/erros-por-topico")
     public List<ErroPorTopico> errosPorTopico(@PathVariable Long id) {
         return turmaBO.errosPorTopico(id);
     }
 
-    /** Busca ativa: alunos sem sequencia ou sem acessar ha mais de N dias (padrao 7). */
     @GetMapping("/{id}/alunos-inativos")
     public List<Aluno> alunosInativos(@PathVariable Long id, @RequestParam(defaultValue = "7") int dias) {
         return turmaBO.alunosInativos(id, dias);

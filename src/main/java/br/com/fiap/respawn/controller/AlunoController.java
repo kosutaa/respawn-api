@@ -54,7 +54,6 @@ public class AlunoController {
         return ResponseEntity.noContent().build();
     }
 
-    /** Historico de missoes do aluno, da mais recente para a mais antiga. */
     @GetMapping("/{id}/missoes")
     public List<MissaoDiaria> missoes(@PathVariable Long id) {
         return alunoBO.missoes(id);

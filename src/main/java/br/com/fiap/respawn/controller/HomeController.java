@@ -9,7 +9,6 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
-/** Pagina inicial da API: confirma que o servico esta no ar e lista os recursos. */
 @RestController
 public class HomeController {
 
@@ -26,7 +25,7 @@ public class HomeController {
         return info;
     }
 
-    /** Front-end do Respawn (arquivos estaticos em resources/static/app). */
+    // front-end (static/app)
     @Hidden
     @GetMapping({"/app", "/app/"})
     public RedirectView aplicacao() {

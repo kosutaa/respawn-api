@@ -4,7 +4,6 @@ import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Pattern;
 import jakarta.validation.constraints.Size;
 
-/** Escola publica atendida pelo Respawn (tabela T_SC_ESCOLA). */
 public class Escola {
 
     private Long id;

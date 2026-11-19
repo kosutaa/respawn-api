@@ -7,7 +7,6 @@ import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Pattern;
 import jakarta.validation.constraints.Size;
 
-/** Turma de uma escola, com um professor responsavel (tabela T_SC_TURMA). */
 public class Turma {
 
     private Long id;

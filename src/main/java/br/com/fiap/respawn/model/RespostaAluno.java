@@ -6,10 +6,6 @@ import jakarta.validation.constraints.NotNull;
 
 import java.time.LocalDate;
 
-/**
- * Resposta do aluno a um exercicio dentro de uma missao (tabela T_SC_RESPOSTA_ALUNO).
- * A missao vem da URL (POST /missoes/{id}/respostas) e a data e a do registro.
- */
 public class RespostaAluno {
 
     private Long id;

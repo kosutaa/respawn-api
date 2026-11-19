@@ -11,10 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
-/**
- * Consulta e exclusao de respostas. O cadastro e feito dentro da missao
- * (POST /missoes/{id}/respostas), porque toda resposta pertence a uma missao.
- */
+// o cadastro de respostas fica em POST /missoes/{id}/respostas
 @RestController
 @RequestMapping("/respostas")
 public class RespostaAlunoController {
@@ -35,7 +32,6 @@ public class RespostaAlunoController {
         return respostaBO.buscar(id);
     }
 
-    /** Exclui a resposta e devolve o XP, se ela estava correta. */
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> excluir(@PathVariable Long id) {
         respostaBO.excluir(id);

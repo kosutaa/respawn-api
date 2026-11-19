@@ -14,10 +14,6 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
-/**
- * Motor de gamificacao do Respawn: registra as respostas e atualiza XP,
- * nivel e sequencia de dias do aluno, tudo na mesma transacao.
- */
 @Service
 public class RespostaAlunoBO {
 
@@ -52,14 +48,7 @@ public class RespostaAlunoBO {
                 .orElseThrow(() -> new RecursoNaoEncontradoException("Resposta", id));
     }
 
-    /**
-     * Registra a resposta de um exercicio na missao. Regras:
-     * 1. a missao precisa estar aberta;
-     * 2. o mesmo exercicio nao pode ser respondido duas vezes na missao;
-     * 3. a soma do tempo gasto nao pode passar do tempo disponivel da missao;
-     * 4. se acertou, o XP do exercicio vai para a missao e para o aluno (e o nivel e recalculado);
-     * 5. certo ou errado, estudar hoje atualiza a sequencia de dias e o ultimo acesso.
-     */
+    // XP so entra se acertou; a sequencia de dias conta mesmo se errou
     @Transactional
     public RespostaAluno registrar(Long idMissao, RespostaAluno resposta) {
         MissaoDiaria missao = missaoBO.buscar(idMissao);
@@ -94,7 +83,6 @@ public class RespostaAlunoBO {
         return resposta;
     }
 
-    /** Exclui uma resposta e, se ela estava correta, devolve o XP que tinha sido ganho. */
     @Transactional
     public void excluir(Long id) {
         RespostaAluno resposta = buscar(id);

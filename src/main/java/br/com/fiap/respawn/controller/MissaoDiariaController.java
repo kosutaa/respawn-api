@@ -57,19 +57,16 @@ public class MissaoDiariaController {
         return ResponseEntity.noContent().build();
     }
 
-    /** Marca a missao como concluida. */
     @PostMapping("/{id}/concluir")
     public MissaoDiaria concluir(@PathVariable Long id) {
         return missaoBO.concluir(id);
     }
 
-    /** Respostas registradas na missao. */
     @GetMapping("/{id}/respostas")
     public List<RespostaAluno> respostas(@PathVariable Long id) {
         return respostaBO.listarPorMissao(id);
     }
 
-    /** Registra a resposta de um exercicio e aplica a gamificacao (XP, nivel e sequencia). */
     @PostMapping("/{id}/respostas")
     public ResponseEntity<RespostaAluno> responder(@PathVariable Long id,
                                                    @Valid @RequestBody RespostaAluno resposta) {

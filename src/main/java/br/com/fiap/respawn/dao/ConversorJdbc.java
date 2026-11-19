@@ -5,7 +5,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.time.LocalDate;
 
-/** Conversoes entre os tipos do Oracle (DATE, CHAR 'S'/'N', NUMBER nulo) e os tipos Java. */
+// Oracle nao tem boolean: usamos CHAR 'S'/'N'
 final class ConversorJdbc {
 
     private ConversorJdbc() {

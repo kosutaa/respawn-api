@@ -7,7 +7,6 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 
-/** Regras de negocio de escolas. */
 @Service
 public class EscolaBO {
 

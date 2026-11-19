@@ -8,7 +8,6 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 import java.util.Optional;
 
-/** Acesso a dados da tabela T_SC_RESPOSTA_ALUNO. */
 @Repository
 public class RespostaAlunoDAO {
 
@@ -43,7 +42,6 @@ public class RespostaAlunoDAO {
                 .stream().findFirst();
     }
 
-    /** Soma dos minutos ja gastos nas respostas de uma missao. */
     public int tempoGastoNaMissao(Long idMissao) {
         Integer total = jdbc.queryForObject(
                 "SELECT NVL(SUM(nr_tempo_gasto_min), 0) FROM t_sc_resposta_aluno WHERE id_missao = ?",

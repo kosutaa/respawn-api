@@ -6,7 +6,6 @@ import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Pattern;
 import jakarta.validation.constraints.Size;
 
-/** Professor vinculado a uma escola (tabela T_SC_PROFESSOR). */
 public class Professor {
 
     private Long id;

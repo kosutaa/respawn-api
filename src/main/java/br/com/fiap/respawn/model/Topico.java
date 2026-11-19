@@ -7,15 +7,11 @@ import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Pattern;
 import jakarta.validation.constraints.Size;
 
-/**
- * Topico curricular (tabela T_SC_TOPICO).
- * idTopicoPrereq aponta para o topico que precisa ser dominado antes
- * (auto-relacionamento); null indica um topico de base.
- */
 public class Topico {
 
     private Long id;
 
+    // null = topico de base, sem pre-requisito
     private Long idTopicoPrereq;
 
     @NotBlank(message = "O nome do topico e obrigatorio")

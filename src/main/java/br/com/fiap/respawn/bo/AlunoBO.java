@@ -9,7 +9,6 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 
-/** Regras de negocio de alunos. */
 @Service
 public class AlunoBO {
 
@@ -32,7 +31,6 @@ public class AlunoBO {
                 .orElseThrow(() -> new RecursoNaoEncontradoException("Aluno", id));
     }
 
-    /** Todo aluno novo comeca com 0 XP, nivel 1 e sem sequencia de dias. */
     public Aluno cadastrar(Aluno aluno) {
         turmaBO.buscar(aluno.getIdTurma());
         aluno.setId(null);
@@ -43,10 +41,7 @@ public class AlunoBO {
         return alunoDAO.inserir(aluno);
     }
 
-    /**
-     * Atualiza os dados cadastrais. XP, nivel, sequencia e ultimo acesso sao
-     * mantidos, pois so mudam pela gamificacao (respostas nas missoes).
-     */
+    // XP, nivel e sequencia nao mudam aqui, so pelas respostas das missoes
     public Aluno atualizar(Long id, Aluno dados) {
         Aluno atual = buscar(id);
         turmaBO.buscar(dados.getIdTurma());

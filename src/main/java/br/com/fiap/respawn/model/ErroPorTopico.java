@@ -1,6 +1,5 @@
 package br.com.fiap.respawn.model;
 
-/** Linha do painel do professor: desempenho da turma em um topico. */
 public class ErroPorTopico {
 
     private Long idTopico;

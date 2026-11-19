@@ -9,7 +9,6 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 
-/** Regras de negocio das missoes diarias. */
 @Service
 public class MissaoDiariaBO {
 
@@ -32,7 +31,6 @@ public class MissaoDiariaBO {
                 .orElseThrow(() -> new RecursoNaoEncontradoException("Missao", id));
     }
 
-    /** Toda missao nova comeca aberta e com 0 XP; sem data, vale para hoje. */
     public MissaoDiaria cadastrar(MissaoDiaria missao) {
         alunoBO.buscar(missao.getIdAluno());
         missao.setId(null);
@@ -44,10 +42,6 @@ public class MissaoDiariaBO {
         return missaoDAO.inserir(missao);
     }
 
-    /**
-     * Permite ajustar data, tempo disponivel e status. O aluno e o XP ganho
-     * nao mudam por aqui. O tempo nao pode ficar menor do que o ja gasto.
-     */
     public MissaoDiaria atualizar(Long id, MissaoDiaria dados) {
         MissaoDiaria atual = buscar(id);
         int tempoGasto = respostaDAO.tempoGastoNaMissao(id);

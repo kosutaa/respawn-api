@@ -9,7 +9,6 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 import java.util.Optional;
 
-/** Acesso a dados da tabela T_SC_TURMA e consultas do painel do professor. */
 @Repository
 public class TurmaDAO {
 
@@ -59,10 +58,6 @@ public class TurmaDAO {
         jdbc.update("DELETE FROM t_sc_turma WHERE id_turma = ?", id);
     }
 
-    /**
-     * Painel do professor: total de respostas e de erros por topico,
-     * considerando apenas os alunos da turma. Topicos com mais erros primeiro.
-     */
     public List<ErroPorTopico> errosPorTopico(Long idTurma) {
         String sql = """
                 SELECT t.id_topico,

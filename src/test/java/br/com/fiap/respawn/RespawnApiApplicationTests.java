@@ -7,9 +7,6 @@ import java.time.LocalDate;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-/**
- * Testes das regras de gamificacao do Aluno (nao precisam de banco de dados).
- */
 class RespawnApiApplicationTests {
 
     private Aluno novoAluno(int xp, int streak, LocalDate ultimoAcesso) {

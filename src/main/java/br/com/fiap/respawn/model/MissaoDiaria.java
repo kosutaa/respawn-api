@@ -6,11 +6,6 @@ import jakarta.validation.constraints.NotNull;
 
 import java.time.LocalDate;
 
-/**
- * "Missao do dia": sessao de estudo do aluno limitada pelo tempo que ele
- * tem disponivel (tabela T_SC_MISSAO_DIARIA). O XP ganho e calculado
- * pelas respostas corretas e nao pode ser editado diretamente.
- */
 public class MissaoDiaria {
 
     private Long id;
@@ -18,7 +13,6 @@ public class MissaoDiaria {
     @NotNull(message = "O aluno da missao e obrigatorio")
     private Long idAluno;
 
-    /** Se nao for informada no cadastro, a missao e criada com a data de hoje. */
     private LocalDate data;
 
     @NotNull(message = "O tempo disponivel e obrigatorio")

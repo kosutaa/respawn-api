@@ -12,7 +12,6 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-/** Regras de negocio de topicos curriculares e da trilha de pre-requisitos. */
 @Service
 public class TopicoBO {
 
@@ -57,11 +56,6 @@ public class TopicoBO {
         return exercicioDAO.listarPorTopico(idTopico);
     }
 
-    /**
-     * Trilha de estudo ate o topico: segue os pre-requisitos ate a base e
-     * devolve na ordem em que devem ser estudados
-     * (ex.: Operacoes Basicas -> Fracoes -> Porcentagem).
-     */
     public List<Topico> trilha(Long idTopico) {
         List<Topico> trilha = new ArrayList<>();
         Topico atual = buscar(idTopico);
@@ -74,11 +68,7 @@ public class TopicoBO {
         return trilha;
     }
 
-    /**
-     * O pre-requisito (se informado) precisa existir, ser da mesma disciplina,
-     * nao pode ser o proprio topico e nao pode criar um ciclo
-     * (A exige B, que exige A), o que travaria a trilha.
-     */
+    // nao deixa criar ciclo (A exige B e B exige A), senao a trilha trava
     private void validarPreRequisito(Topico topico) {
         Long idPrereq = topico.getIdTopicoPrereq();
         if (idPrereq == null) {

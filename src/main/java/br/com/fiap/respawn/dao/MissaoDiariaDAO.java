@@ -8,7 +8,6 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 import java.util.Optional;
 
-/** Acesso a dados da tabela T_SC_MISSAO_DIARIA. */
 @Repository
 public class MissaoDiariaDAO {
 

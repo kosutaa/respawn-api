@@ -9,7 +9,6 @@ import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 
-/** Acesso a dados da tabela T_SC_ALUNO. */
 @Repository
 public class AlunoDAO {
 
@@ -42,7 +41,6 @@ public class AlunoDAO {
                 MAPPER, idTurma);
     }
 
-    /** Busca ativa: alunos da turma sem sequencia ativa ou sem acesso desde a data limite. */
     public List<Aluno> listarInativos(Long idTurma, LocalDate acessoAntesDe) {
         return jdbc.query("SELECT " + COLUNAS + " FROM t_sc_aluno "
                         + "WHERE id_turma = ? AND (nr_streak_dias = 0 OR dt_ultimo_acesso IS NULL OR dt_ultimo_acesso < ?) "

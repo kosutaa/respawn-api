@@ -54,13 +54,11 @@ public class TopicoController {
         return ResponseEntity.noContent().build();
     }
 
-    /** Exercicios do topico, do mais curto para o mais longo. */
     @GetMapping("/{id}/exercicios")
     public List<Exercicio> exercicios(@PathVariable Long id) {
         return topicoBO.exercicios(id);
     }
 
-    /** Trilha de pre-requisitos ate o topico, na ordem de estudo. */
     @GetMapping("/{id}/trilha")
     public List<Topico> trilha(@PathVariable Long id) {
         return topicoBO.trilha(id);

@@ -7,7 +7,6 @@ import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Pattern;
 import jakarta.validation.constraints.Size;
 
-/** Exercicio curto de microlearning, ligado a um topico (tabela T_SC_EXERCICIO). */
 public class Exercicio {
 
     private Long id;

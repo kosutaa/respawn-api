@@ -12,7 +12,6 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 
-/** Regras de negocio de turmas e do painel do professor. */
 @Service
 public class TurmaBO {
 
@@ -61,13 +60,11 @@ public class TurmaBO {
         return alunoDAO.listarPorTurma(idTurma);
     }
 
-    /** Painel do professor: topicos em que a turma mais erra. */
     public List<ErroPorTopico> errosPorTopico(Long idTurma) {
         buscar(idTurma);
         return turmaDAO.errosPorTopico(idTurma);
     }
 
-    /** Busca ativa: alunos sem sequencia ativa ou sem acessar ha mais de N dias. */
     public List<Aluno> alunosInativos(Long idTurma, int dias) {
         if (dias < 1) {
             throw new RegraDeNegocioException("O numero de dias deve ser maior que zero");
@@ -76,7 +73,6 @@ public class TurmaBO {
         return alunoDAO.listarInativos(idTurma, Datas.hoje().minusDays(dias));
     }
 
-    /** A escola e o professor precisam existir, e o professor precisa ser da mesma escola da turma. */
     private void validar(Turma turma) {
         escolaBO.buscar(turma.getIdEscola());
         Professor professor = professorBO.buscar(turma.getIdProfessor());

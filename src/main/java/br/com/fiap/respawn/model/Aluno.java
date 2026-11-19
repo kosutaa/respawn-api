@@ -8,14 +8,8 @@ import jakarta.validation.constraints.Size;
 
 import java.time.LocalDate;
 
-/**
- * Estudante que usa o Respawn (tabela T_SC_ALUNO).
- * XP, nivel, sequencia de dias e ultimo acesso sao controlados pela
- * gamificacao (RespostaAlunoBO) e nao podem ser editados diretamente.
- */
 public class Aluno {
 
-    /** A cada XP_POR_NIVEL pontos o aluno sobe um nivel. */
     public static final int XP_POR_NIVEL = 100;
 
     private Long id;
@@ -58,21 +52,17 @@ public class Aluno {
         this.ultimoAcesso = ultimoAcesso;
     }
 
-    /** Soma (ou subtrai, se negativo) XP e recalcula o nivel. Nunca fica abaixo de zero. */
     public void adicionarXp(int xp) {
         this.xpTotal = Math.max(0, this.xpTotal + xp);
         this.nivel = calcularNivel(this.xpTotal);
     }
 
-    /** Nivel 1 ate 199 XP; depois, um nivel a cada 100 XP (ex.: 450 XP = nivel 4). */
+    // ex.: 450 XP = nivel 4
     public static int calcularNivel(int xpTotal) {
         return Math.max(1, xpTotal / XP_POR_NIVEL);
     }
 
-    /**
-     * Atualiza a sequencia de dias (streak) ao estudar em uma data:
-     * mesmo dia mantem, dia seguinte soma 1, depois de um intervalo recomeca em 1.
-     */
+    // mesmo dia mantem, dia seguinte soma 1, depois de um intervalo volta para 1
     public void registrarEstudo(LocalDate data) {
         if (ultimoAcesso != null && ultimoAcesso.equals(data)) {
             return;

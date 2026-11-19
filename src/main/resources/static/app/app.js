@@ -1,18 +1,6 @@
-/*
- * Respawn - aplicação web do protótipo (GS 2026.2, equipe SysCore).
- *
- * Front-end sem framework que consome a API REST do próprio projeto (mesmo endereço).
- * Telas: escolha de perfil, missão do dia da aluna, exercício e painel da professora.
- *
- * A missão do dia é montada com a mesma lógica do trabalho de Dynamic Programming:
- * diagnóstico pelo grafo de pré-requisitos (lacuna-raiz) + mochila 0/1 por tabulação
- * (tempo disponível como capacidade, no máximo 3 exercícios).
- */
 'use strict';
 
-// ---------------------------------------------------------------- configuração
-
-/** Login simulado do protótipo: as personas do guia da equipe. */
+// login simulado (personas da equipe)
 const PERFIS = {
   aluna: { id: 1 },
   professora: { id: 1, turma: 1, tratamento: 'Profa.' },
@@ -21,7 +9,7 @@ const TEMPOS = [5, 10, 15, 20];
 const MAX_EXERCICIOS = 3;
 const LIMIAR_DOMINIO = 0.7;
 
-/** O banco guarda os textos sem acento; aqui ficam os nomes de exibição. */
+// no banco os nomes estao sem acento
 const TOPICOS = {
   1: { nome: 'Operações básicas e divisão', curto: 'Operações básicas' },
   2: { nome: 'Frações e proporções', curto: 'Frações' },
@@ -33,10 +21,7 @@ const TOPICOS = {
 const DISCIPLINAS = { MATEMATICA: 'Matemática', PORTUGUES: 'Português' };
 const DIFICULDADES = { BASICO: 'Básico', INTERMEDIARIO: 'Intermediário', AVANCADO: 'Avançado' };
 
-/**
- * Conteúdo de cada exercício (alternativas e explicação). O banco guarda título,
- * enunciado, tempo e XP; as alternativas ficam no front-end neste protótipo.
- */
+// o banco nao tem as alternativas, entao ficam aqui
 const CONTEUDO = {
   1: {
     titulo: 'Divisão no dia a dia',
@@ -78,7 +63,6 @@ const CONTEUDO = {
   },
 };
 
-// ---------------------------------------------------------------- utilidades
 
 const $app = document.getElementById('app');
 const $toast = document.getElementById('toast');
@@ -108,7 +92,6 @@ async function api(caminho, opcoes = {}) {
 
 const post = (caminho, corpo) => api(caminho, { method: 'POST', body: corpo ? JSON.stringify(corpo) : undefined });
 
-/** Data de hoje no fuso de São Paulo, no mesmo formato da API (AAAA-MM-DD). */
 function hoje() {
   return new Date().toLocaleDateString('en-CA', { timeZone: 'America/Sao_Paulo' });
 }
@@ -159,9 +142,7 @@ function modoCelular(ligado) {
   document.body.classList.toggle('modo-celular', ligado);
 }
 
-// ---------------------------------------------------------------- regras (grafo + mochila)
 
-/** Nível = 1 a cada 100 XP, mínimo 1 (mesma regra da classe Aluno da API). */
 function progressoNivel(aluno) {
   const nivel = aluno.nivel;
   const inicio = nivel <= 1 ? 0 : nivel * 100;
@@ -169,11 +150,7 @@ function progressoNivel(aluno) {
   return { faltam: proximo - aluno.xpTotal, pct: Math.max(0, Math.min(100, ((aluno.xpTotal - inicio) / (proximo - inicio)) * 100)) };
 }
 
-/**
- * Diagnóstico pelo grafo de pré-requisitos (igual ao grafo.py do trabalho de Dynamic Programming):
- * dominado (acerto >= 70%), travado (pré-requisito também fraco) ou lacuna-raiz
- * (base em dia; prioridade 4 + nº de tópicos fracos que ela bloqueia).
- */
+// mesma ideia do grafo.py de Dynamic Programming
 function diagnosticar(topicos, exercicios, respostas) {
   const topicoDoExercicio = new Map(exercicios.map(e => [e.id, e.idTopico]));
   const contagem = {};
@@ -218,7 +195,6 @@ function diagnosticar(topicos, exercicios, respostas) {
   return { porId, fraco, filhos };
 }
 
-/** Caminho da raiz até o tópico (pré-requisitos primeiro). */
 function caminhoAte(idTopico, topicos) {
   const porId = new Map(topicos.map(t => [t.id, t]));
   const caminho = [];
@@ -230,7 +206,6 @@ function caminhoAte(idTopico, topicos) {
   return caminho;
 }
 
-/** Escolhe a trilha da aluna: a lacuna-raiz de maior prioridade e o tópico que ela trava. */
 function escolherTrilha(topicos, diag) {
   const lacunas = topicos.filter(t => diag.porId[t.id].situacao === 'lacuna')
     .sort((a, b) => diag.porId[b.id].mult - diag.porId[a.id].mult);
@@ -248,10 +223,7 @@ function escolherTrilha(topicos, diag) {
   return { alvo: caminho[caminho.length - 1], caminho, indiceAtual: indiceAtual === -1 ? caminho.length - 1 : indiceAtual };
 }
 
-/**
- * Mochila 0/1 por tabulação: dp[i][k][t] = melhor relevância com os i primeiros
- * exercícios, até k exercícios e até t minutos. Depois, backtracking da escolha.
- */
+// mochila 0/1: dp[i][k][t] = melhor valor com i exercicios, k vagas e t minutos
 function montarMissao(candidatos, tempo, maxEx = MAX_EXERCICIOS) {
   const n = candidatos.length;
   const dp = Array.from({ length: n + 1 }, () => Array.from({ length: maxEx + 1 }, () => new Array(tempo + 1).fill(0)));
@@ -292,7 +264,6 @@ function planejarMissao(contexto, tempo) {
     .sort((a, b) => (ordem.get(a.idTopico) - ordem.get(b.idTopico)) || a.id - b.id);
 }
 
-// ---------------------------------------------------------------- tela: início
 
 function telaInicio() {
   modoCelular(false);
@@ -324,7 +295,6 @@ function telaInicio() {
   </main>`;
 }
 
-// ---------------------------------------------------------------- tela: missão do dia (aluna)
 
 async function carregarContextoAluna() {
   const id = PERFIS.aluna.id;
@@ -466,7 +436,6 @@ async function comecarMissao(botao, ctx, missao) {
   }
 }
 
-// ---------------------------------------------------------------- tela: exercício
 
 async function telaMissao(idMissao) {
   modoCelular(true);
@@ -597,7 +566,6 @@ function telaResumo(missao, aluno, respostas) {
   </div>`;
 }
 
-// ---------------------------------------------------------------- tela: painel da professora
 
 async function telaProfessora(silencioso = false) {
   modoCelular(false);
@@ -795,7 +763,6 @@ function abaExercicios(d) {
     <tbody>${linhas}</tbody></table></div></section>`;
 }
 
-// ---------------------------------------------------------------- rotas
 
 function rotear() {
   const rota = location.hash.replace(/^#\/?/, '');
