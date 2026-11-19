@@ -13,7 +13,7 @@ Disciplina: **Domain Driven Design - Java**.
 | **Problema, em uma frase** | Alunos da rede pública que ficaram para trás no básico não têm reforço acessível, não sabem por onde recomeçar e desistem de videoaulas longas, enquanto o professor não consegue ver a tempo quem está ficando para trás. |
 | **Como funciona** | O aluno informa quantos minutos tem (ex.: 15 minutos no ônibus) e recebe uma "missão do dia" com exercícios curtos, seguindo uma trilha de pré-requisitos. Cada acerto rende XP, nível e sequência de dias. O professor acompanha num painel os tópicos em que a turma mais erra e os alunos que pararam de estudar (busca ativa). |
 | **O que cada parte faz** | **API Java (este repositório):** domínio, regras de gamificação e painel, com Oracle e deploy no Render. **Database Design:** modelo relacional das 8 tabelas. **Data Science:** análise do ENEM 2023 (escolas públicas da cidade de SP) com regressão linear e logística, que fundamenta as prioridades do produto. **Dynamic Programming:** algoritmo da trilha e da missão do dia. **Redes:** rede do laboratório da escola. **Agile:** personas, backlog e protótipos. **AR/VR:** vídeo da trilha em 3D. |
-| **Link do repositório** | https://github.com/kosutaa/respawn-api-gs2026 |
+| **Link do repositório** | https://github.com/kosutaa/respawn-api |
 | **Indicador de impacto** | % de alunos que mantêm 7 dias seguidos de estudo; aumento de acertos por tópico entre o diagnóstico e 30 dias depois; % de alunos da busca ativa que voltam a estudar |
 | **ODS conectados** | **ODS 4**, metas **4.1** (aprendizagem efetiva na educação básica) e **4.6** (competências de leitura e matemática), e **ODS 10**, meta **10.2** (inclusão de todos, independentemente da condição econômica, raça ou sexo) |
 
@@ -26,7 +26,7 @@ Disciplina: **Domain Driven Design - Java**.
 | **Aplicação web (front-end)** | https://respawn-api-gk7x.onrender.com/app |
 | **Deploy da API (Render)** | https://respawn-api-gk7x.onrender.com |
 | **Documentação interativa (Swagger)** | https://respawn-api-gk7x.onrender.com/swagger-ui.html |
-| **Repositório** | https://github.com/kosutaa/respawn-api-gs2026 |
+| **Repositório** | https://github.com/kosutaa/respawn-api |
 
 > O plano gratuito do Render "dorme" após um período sem uso: a primeira requisição pode levar de 1 a 2 minutos. Depois disso, as respostas são imediatas.
 
